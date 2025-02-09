@@ -99,6 +99,7 @@ def update_assignment(list_of_points, centroids_dict):
             {'centroid1': [[1.1, 1, 1, 0.5], [0, 0, 0, 0]],
              'centroid2': [[4, 3.14, 2, 1]]}
     """
+    test
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
 
