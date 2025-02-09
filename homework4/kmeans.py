@@ -31,8 +31,10 @@ def euclidean_distance(point1, point2):
         Output:
             3.7735394525564456
     """
-
-    # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
+    sum = 0
+    for i in range(len(point1)):
+        sum += (point1[i] - point2[i]) ** 2
+    return sum ** 0.5
 
 
 # problem for students
@@ -57,8 +59,15 @@ def get_closest_centroid(point, centroids_dict):
         Output:
             centroid1
     """
+    min = euclidean_distance(list(centroids_dict.values())[0], point)
+    min_key = list(centroids_dict.keys())[0]
+    for centroid, cen_point in centroids_dict.items():
+        distance = euclidean_distance(point, cen_point)
+        if distance < min:
+            min = distance
+            min_key = centroid
+    return min_key
 
-    # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
 
 
 # problem for students
