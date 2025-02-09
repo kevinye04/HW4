@@ -1,0 +1,5 @@
+{
+    "auto-commit.enable": true,
+    "auto-commit.interval": 5,
+    "auto-commit.message": "Auto-commit: updates"
+}
