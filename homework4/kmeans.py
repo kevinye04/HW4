@@ -99,7 +99,14 @@ def update_assignment(list_of_points, centroids_dict):
             {'centroid1': [[1.1, 1, 1, 0.5], [0, 0, 0, 0]],
              'centroid2': [[4, 3.14, 2, 1]]}
     """
-    test
+    updated_cen = {}
+    for point in list_of_points:
+        if get_closest_centroid(point, centroids_dict) not in updated_cen:
+            updated_cen[get_closest_centroid(point, centroids_dict)] = [point]
+        else:
+            updated_cen[get_closest_centroid(point, centroids_dict)].append(point)
+    
+    return updated_cen
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
 
@@ -121,6 +128,14 @@ def mean_of_points(list_of_points):
         Output:
             [1.7, 1.3800000000000001, 1.0, 0.5]
     """
+    new_cen = []
+    for i in range(len(list_of_points[0])):
+        sum = 0
+        for j in range(len(list_of_points)):
+            sum += list_of_points[j][i]
+        new_cen.append(sum/len(list_of_points))
+    return new_cen
+
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
 
@@ -152,6 +167,10 @@ def update_centroids(assignment_dict):
           {'centroid1': [0.55, 0.5, 0.5, 0.25],
            'centroid2': [4.0, 3.14, 2.0, 1.0]}
     """
+    updated_cen_dict = {}
+    for cen, cen_points in assignment_dict.items():
+        updated_cen_dict[cen] = mean_of_points(cen_points)
+    return updated_cen_dict
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
 
