@@ -549,7 +549,7 @@ def main_2d(data, init_centroids):
         # plot centroid
         fig = plot_2d(assignment_dict, centroids)
         plt.title(f"step{step}")
-        fig.savefig(os.path.join("results", "2D", f"step{step}.png"))
+        fig.savefig(os.path.join("/workspaces", "HW4", "homework4", "results", "2D", f"step{step}.png"))
         plt.clf()
         step += 1
     print(f"K-means converged after {step} steps.")
@@ -580,9 +580,9 @@ def main_mnist(data, init_centroids):
 
 
 if __name__ == "__main__":
-    main_test()
+    #main_test()
 
-    # data, label = read_data("data/data_2d.csv")
-    # init_c = load_centroids("data/2d_init_centroids.csv")
-    # final_c = main_2d(data, init_c)
-    # write_centroids_tofile("2d_final_centroids.csv", final_c)
+    data, label = read_data("/workspaces/HW4/homework4/data/data_2d.csv")
+    init_c = load_centroids("/workspaces/HW4/homework4/data/2d_init_centroids.csv")
+    final_c = main_2d(data, init_c)
+    write_centroids_tofile("/workspaces/HW4/homework4/2d_final_centroids.csv", final_c)
