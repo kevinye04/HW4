@@ -63,13 +63,13 @@ def get_closest_centroid(point, centroids_dict):
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
     min_distance = float('inf')
-    closest_centoid = ""
+    closest_centroid = ""
     for closest_name,centriod_value in centroids_dict.items():
         distance = euclidean_distance(point,centriod_value)
         if distance<min_distance:
             min_distance = distance
             closest_centroid = closest_name
-    return closest_centoid
+    return closest_centroid
 # problem for students
 def update_assignment(list_of_points, centroids_dict):
     """Assign all data points to the closest centroids. You should use
@@ -547,7 +547,7 @@ def main_2d(data, init_centroids):
         # plot centroid
         fig = plot_2d(assignment_dict, centroids)
         plt.title(f"step{step}")
-        fig.savefig(os.path.join("results", "2D", f"step{step}.png"))
+        fig.savefig(os.path.join("homework4","results", "2D", f"step{step}.png"))
         plt.clf()
         step += 1
     print(f"K-means converged after {step} steps.")
@@ -578,9 +578,9 @@ def main_mnist(data, init_centroids):
 
 
 if __name__ == "__main__":
-    main_test()
+    #main_test()
 
-    # data, label = read_data("data/data_2d.csv")
-    # init_c = load_centroids("data/2d_init_centroids.csv")
-    # final_c = main_2d(data, init_c)
-    # write_centroids_tofile("2d_final_centroids.csv", final_c)
+    data, label = read_data("homework4/data/data_2d.csv")
+    init_c = load_centroids("homework4/data/2d_init_centroids.csv")
+    final_c = main_2d(data, init_c)
+    write_centroids_tofile("homework4/data/2d_final_centroids.csv", final_c)
