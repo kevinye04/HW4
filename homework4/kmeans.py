@@ -63,11 +63,11 @@ def get_closest_centroid(point, centroids_dict):
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
     min_distance = float('inf')
-    closest_centoid = None
+    closest_centoid = ""
     for closest_name,centriod in centroids_dict.items():
-        distance = euclidean_distance(piont,centroid)
-        if distence<min_distance:
-            min_distance = distence
+        distance = euclidean_distance(point,closest_centoid)
+        if distance<min_distance:
+            min_distance = distance
             closest_centroid = centroid_name
     return closest_centoid
 # problem for students
@@ -166,7 +166,7 @@ def update_centroids(assignment_dict):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
-  new_centroids = {}  
+    new_centroids = {}  
     for centroid_name, points in assignment_dict.items(): 
         new_centroid = mean_of_points(points) 
         new_centroids[centroid_name] = new_centroid 
@@ -387,7 +387,7 @@ def test_update_assignment():
 
     # centroids_dict2
     received = update_assignment(list_of_points, centroids_dict2)
-    expected = {
+    expected = {                        
         "centroid1": [[-1.36639346, -0.38664658, -1.02232584, -1.05902604],
                       [1.13659605, -2.47109085, -0.83996912, -0.24579457],
                       [-0.83095884, -1.73002213, -0.01361636, -0.3265274],

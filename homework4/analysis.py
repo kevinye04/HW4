@@ -39,7 +39,11 @@ def update_assignment(list_of_points, labels, centroids_dict):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
-
+    result = {centroid_name: [] for centroid_name in centroids_dict}
+    for point, label in zip(list_of_points, labels):
+        closest_centroid = get_closest_centroid(point, centroids_dict)
+        result[closest_centroid].append(label)
+    return result
 
 def majority_count(labels):
     """Return the count of the majority labels in the label list
@@ -58,7 +62,12 @@ def majority_count(labels):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
-
+    if not labels:
+        return 0
+    label_count = {}
+    for label in labels:
+        label_count[label] = label_count.get(label, 0) + 1
+    return max(label_count.values(), default=0)
 
 def accuracy(list_of_points, labels, centroids_dict):
     """Calculate the accuracy of the algorithm. You should use
@@ -86,7 +95,13 @@ def accuracy(list_of_points, labels, centroids_dict):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
-
+   assignment = update_assignment(list_of_points, labels, centroids_dict)
+    total_count = sum(len(lst) for lst in assignment.values())
+    correct_count = 0
+    for centroid_labels in assignment.values():
+        majority = majority_count(centroid_labels)
+        correct_count += majority
+    return correct_count / total_count if total_count > 0 else 0
 
 # ----------------------------------------------------------
 # HELPER FUNCTIONS
