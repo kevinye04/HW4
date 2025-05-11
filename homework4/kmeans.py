@@ -133,7 +133,7 @@ def mean_of_points(list_of_points):
     num_points = len(list_of_points)  
     num_dimensions = len(list_of_points[0])  
     sums = [0] * num_dimensions  
-    for point in list_of_points:  
+    for point in list_of_points: 
         for i in range(num_dimensions):  
             sums[i] += point[i]  
     return [sums[i] / num_points for i in range(num_dimensions)] 
@@ -547,6 +547,7 @@ def main_2d(data, init_centroids):
         # plot centroid
         fig = plot_2d(assignment_dict, centroids)
         plt.title(f"step{step}")
+        os.makedirs(os.path.join("homework4", "results", "2D"), exist_ok=True)
         fig.savefig(os.path.join("homework4","results", "2D", f"step{step}.png"))
         plt.clf()
         step += 1
@@ -577,10 +578,10 @@ def main_mnist(data, init_centroids):
     return centroids
 
 
-if __name__ == "__main__":
-    #main_test()
+if __name__ == '__main__':
+    # main_test()
 
-    data, label = read_data("homework4/data/data_2d.csv")
-    init_c = load_centroids("homework4/data/2d_init_centroids.csv")
-    final_c = main_2d(data, init_c)
-    write_centroids_tofile("homework4/data/2d_final_centroids.csv", final_c)
+    data, label = read_data("homework4/data/mnist.csv")
+    init_c = load_centroids("homework4/data/mnist_init_centroids.csv")
+    final_c = main_mnist(data, init_c)
+    write_centroids_tofile("homework4/mnist_final_centroids.csv", final_c)

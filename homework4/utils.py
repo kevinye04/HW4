@@ -133,8 +133,8 @@ def plot_digit(digit):
 def plot_centroids(centroids, name):
     for k, v in centroids.items():
         fig = plot_digit(v)
-        fig.savefig(os.path.join("results", "MNIST", name, f"{k}.png"))
-
+        os.makedirs(os.path.join("homework", "results", "MNIST", name), exist_ok=True)
+        fig.savefig(os.path.join("homework", "results", "MNIST", name, f"{k}.png"))
 
 def converged(c1, c2):
     if c1 is None or c2 is None:
