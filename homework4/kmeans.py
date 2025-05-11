@@ -64,11 +64,11 @@ def get_closest_centroid(point, centroids_dict):
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
     min_distance = float('inf')
     closest_centoid = ""
-    for closest_name,centriod in centroids_dict.items():
-        distance = euclidean_distance(point,closest_centoid)
+    for closest_name,centriod_value in centroids_dict.items():
+        distance = euclidean_distance(point,centriod_value)
         if distance<min_distance:
             min_distance = distance
-            closest_centroid = centroid_name
+            closest_centroid = closest_name
     return closest_centoid
 # problem for students
 def update_assignment(list_of_points, centroids_dict):
