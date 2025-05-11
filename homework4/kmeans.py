@@ -33,7 +33,10 @@ def euclidean_distance(point1, point2):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
-
+    distance = 0
+    for i in range(len(point1)):
+        distance += (point1[i] - point2[i]) **2
+    return  distance ** 0.5
 
 # problem for students
 def get_closest_centroid(point, centroids_dict):
@@ -59,13 +62,19 @@ def get_closest_centroid(point, centroids_dict):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
-
-
+    min_distance = float('inf')
+    closest_centoid = None
+    for closest_name,centriod in centroids_dict.items():
+        distance = euclidean_distance(piont,centroid)
+        if distence<min_distance:
+            min_distance = distence
+            closest_centroid = centroid_name
+    return closest_centoid
 # problem for students
 def update_assignment(list_of_points, centroids_dict):
     """Assign all data points to the closest centroids. You should use
     the get_closest_centroid function (that you previously implemented).
-    This function should return a new dictionary, not modify any
+    This function should return a new dictionary, not modify any  
     passed in parameters.
 
     Arguments:
@@ -92,6 +101,14 @@ def update_assignment(list_of_points, centroids_dict):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
+    assignment_dict={}
+    for point in list_of_points:
+        closest_centroid = get_closest_centroid(point, centroids_dict)  
+        if closest_centroid in assignment_dict:  
+            assignment_dict[closest_centroid].append(point)  
+        else:
+            assignment_dict[closest_centroid] = [point] 
+    return assignment_dict  
 
 
 # problem for students
@@ -113,8 +130,13 @@ def mean_of_points(list_of_points):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
-
-
+    num_points = len(list_of_points)  
+    num_dimensions = len(list_of_points[0])  
+    sums = [0] * num_dimensions  
+    for point in list_of_points:  
+        for i in range(num_dimensions):  
+            sums[i] += point[i]  
+    return [sums[i] / num_points for i in range(num_dimensions)] 
 # problem for students
 def update_centroids(assignment_dict):
     """Update centroid locations as the mean of all data points that belong
@@ -144,6 +166,11 @@ def update_centroids(assignment_dict):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
+  new_centroids = {}  
+    for centroid_name, points in assignment_dict.items(): 
+        new_centroid = mean_of_points(points) 
+        new_centroids[centroid_name] = new_centroid 
+    return new_centroids 
 
 
 # ----------------------------------------------------------
