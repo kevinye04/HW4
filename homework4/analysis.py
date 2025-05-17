@@ -39,7 +39,17 @@ def update_assignment(list_of_points, labels, centroids_dict):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
+    assignment = {}
+    for centroid_name in centroids_dict:
+        assignment[centroid_name] = []
     
+    for i in range(len(list_of_points)):
+        point = list_of_points[i]
+        label = labels[i]
+        closest_centroid = get_closest_centroid(point, centroids_dict) 
+        assignment[closest_centroid].append(label)  
+    
+    return assignment
 
 def majority_count(labels):
     """Return the count of the majority labels in the label list
@@ -58,7 +68,20 @@ def majority_count(labels):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
-   
+    
+    label_counts = {} 
+    for label in labels:
+        if label in label_counts:
+            label_counts[label] += 1
+        else:
+            label_counts[label] = 1
+    
+
+    max_count = 0
+    for count in label_counts.values():
+        if count > max_count:
+            max_count = count
+    return max_count
 def accuracy(list_of_points, labels, centroids_dict):
     """Calculate the accuracy of the algorithm. You should use
     update_assignment and majority_count (that you previously implemented)
@@ -85,7 +108,23 @@ def accuracy(list_of_points, labels, centroids_dict):
     """
 
     # REMOVE THIS COMMENT AND REPLACE IT WITH YOUR CODE ...
+    assignment_dict = update_assignment(list_of_points, labels, centroids_dict)
+    correct = 0
+    total = 0
 
+    for centroid, assigned_labels in assignment_dict.items():
+       
+        total += len(assigned_labels)
+    
+        if assigned_labels:
+            max_count = 0
+            counts = {}
+            for label in assigned_labels:
+                counts[label] = counts.get(label, 0) + 1
+                if counts[label] > max_count:
+                    max_count = counts[label]
+            correct += max_count
+    return correct / total if total > 0 else 0.0
 
 # ----------------------------------------------------------
 # HELPER FUNCTIONS
